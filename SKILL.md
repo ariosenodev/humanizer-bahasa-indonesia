@@ -5,8 +5,11 @@ description: |
   dan manusiawi. Gunakan skill ini setiap kali ada permintaan untuk "humanize", memperbaiki
   tulisan agar tidak terkesan AI, menghilangkan gaya chatbot, atau membuat teks lebih natural
   dalam Bahasa Indonesia. Cocok untuk artikel/blog, laporan bisnis, media sosial, dan karya
-  ilmiah/akademik. Juga aktifkan skill ini saat pengguna mengatakan "teks ini kedengarannya
-  seperti AI", "tolong perbaiki tulisan ini", atau "buat lebih manusiawi" dalam konteks apapun.
+  ilmiah/akademik. Termasuk menulis jawaban tugas kuliah dengan format & gaya yang sesuai
+  jenis tugasnya (diskusi, latihan, praktikum, esai) memakai template di
+  references/template-jawaban.md. Juga aktifkan skill ini saat pengguna mengatakan "teks ini
+  kedengarannya seperti AI", "tolong perbaiki tulisan ini", "buat lebih manusiawi", atau
+  "kerjakan tugas ini dengan gaya mahasiswa" dalam konteks apapun.
 allowed-tools:
   - Read
   - Write
@@ -432,6 +435,48 @@ Berikan:
 > Metrik produktivitasnya licin. GitHub bisa bilang pengguna Copilot "menerima 30% saran," tapi penerimaan bukan berarti benar, dan benar bukan berarti ada nilainya. Kalau tidak ada tes, kamu pada dasarnya nebak.
 
 ---
+
+---
+
+## GAYA JAWABAN MAHASISWA (template per jenis tugas)
+
+Saat menulis atau memperbaiki JAWABAN TUGAS, jangan pakai gaya "artikel AI".
+Baca `references/template-jawaban.md` lalu pilih template sesuai jenis tugas:
+
+| Jenis tugas | Template | Struktur inti |
+|---|---|---|
+| Diskusi/Q&A | T1 | jawaban langsung 2-5 kalimat, tanpa pembuka |
+| Latihan bernomor | T2 | per nomor, point langsung, soal tidak ditulis ulang |
+| Laporan praktikum | T3 | identitas, teori, praktikum (a)-(e), kesimpulan; TANPA BAB |
+| Esai pendek | T4 | pembuka konteks, isi argumen, penutup posisi |
+| Resume materi | T5 | poin per sub-materi, 1-2 halaman |
+| Kode program | T6 | kode per bagian + output eksekusi asli + analisis |
+
+Aturan keras tambahan untuk tugas:
+- Satu template, dipakai konsisten. Campuran = mencurigakan.
+- Panjang jawaban mengikuti bobot soal. Soal 1 poin = 1-3 kalimat.
+- Hasil angka/kode harus dari eksekusi nyata, bukan dikarang.
+- Sebelum diserahkan: cek soal terbaca utuh, semua sub-soal terjawab,
+  angka diverifikasi ulang, format sesuai template yang dipilih.
+
+---
+
+## PLACEHOLDER (bagian yang butuh isi user)
+
+Bagian yang tidak bisa diisi assistant (logo kampus, tanda tangan, data pribadi)
+TIDAK dikarang dan TIDAK dikosongkan diam-diam. Tandai dengan kotak putus-putus
+merah berisi instruksi jelas ("isi disini logo universitasmu"), maksimal 3-4 per
+dokumen, plus catatan daftar placeholder di akhir. Baca `references/placeholder.md`.
+
+---
+
+## ATURAN TEKNIS PENULISAN (PUEBI + pedoman kampus)
+
+Sebelum menulis karya ilmiah formal, baca `references/aturan-teknis.md`.
+Poin paling sering dilanggar: "di" dipisah (di kampus) vs "di-" disambung
+(dipakai); istilah asing miring kecuali nama asing & akronim; nomor halaman
+romawi bawah-tengah (awal) / arab kanan-atas (isi); kesimpulan menjawab
+rumusan masalah, bukan ringkasan umum; kalimat tidak dibuka angka.
 
 ## Referensi
 

@@ -62,6 +62,23 @@ Works across all writing contexts: articles/blogs, academic writing, business re
 
 ---
 
+## What's New (Fork Upgrade, Oktober 2026)
+
+Fork ini menambahkan lapisan **tugas akademik mahasiswa Indonesia** di atas skill humanizer dasar:
+
+- **11 template format dokumen** (`references/template-jawaban.md`) — struktur jawaban per jenis tugas: tugas mingguan (tanpa BAB), laporan praktikum, makalah (BAB I-III), skripsi (BAB I-V), proposal penelitian, artikel jurnal IMRAD, laporan observasi, laporan kasus, review pustaka, laporan magang/KKN, resume. Lengkap dengan aturan header, font, margin, dan kapan bab wajib/tidak.
+- **Sistem placeholder** (`references/placeholder.md`) — bagian yang hanya bisa diisi user (logo kampus, tanda tangan, data pribadi) ditandai kotak putus-putus merah berisi instruksi jelas, tidak dikarang dan tidak dikosongkan diam-diam. Maksimal 3-4 per dokumen.
+- **Aturan teknis penulisan** (`references/aturan-teknis.md`) — distilasi PUEBI + pedoman resmi kampus (FT UB, UNIKOM, UGM DTSL): margin standar, nomor halaman romawi/Arab, istilah asing italic, kesalahan ejaan umum ("di" dipisah vs "di-" disambung), dan kesalahan struktur yang paling sering dinilai dosen.
+
+| File | Isi |
+|------|-----|
+| `SKILL.md` | Aturan inti humanizer + gaya mahasiswa + integrasi semua lapisan |
+| `references/template-jawaban.md` | 11 template format per jenis tugas |
+| `references/placeholder.md` | Sistem placeholder visual |
+| `references/aturan-teknis.md` | PUEBI + margin + nomor halaman + kesalahan umum |
+
+---
+
 ## Patterns Detected
 
 ### Universal Patterns (adapted from English)
