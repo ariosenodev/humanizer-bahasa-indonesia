@@ -1,131 +1,127 @@
 # Humanizer Bahasa Indonesia
 
-A Claude skill that removes signs of AI-generated writing from Indonesian text, making it sound more natural and human.
+> Sunting teks berbahasa Indonesia agar terdengar alami, jelas, dan tetap setia pada maksud penulis.
 
-Inspired by and based on [blader/humanizer](https://github.com/blader/humanizer) — a Claude Code skill for English text by [@blader](https://github.com/blader). This is an Indonesian-language adaptation that extends the original patterns with new ones specific to how AI writes in Bahasa Indonesia.
+Humanizer Bahasa Indonesia adalah skill untuk Claude Code dan Codex CLI. Skill ini membantu mengenali pola tulisan yang terasa generik atau seperti keluaran AI, lalu menyuntingnya tanpa mengarang fakta atau menghapus suara penulis.
 
----
+**Deskripsi GitHub:** Skill Claude Code dan Codex CLI untuk menyunting teks berbahasa Indonesia agar lebih alami, jelas, dan tetap mempertahankan makna serta suara penulis.
 
-## Installation
+## Fitur
 
-### Option 1: Claude.ai Skills (Recommended)
+- Mencakup 21 pola tulisan, termasuk bahasa promosi, atribusi kabur, frasa birokratis, pengulangan sinonim, pengisi, dan hedging berlebihan.
+- Menyesuaikan hasil dengan konteks dan nada yang diminta, seperti formal, santai, akademik, atau bisnis.
+- Mempertahankan makna dan fakta. Skill tidak menambahkan detail yang tidak ada di teks sumber.
+- Menggunakan aturan yang sama di Claude Code dan Codex CLI.
 
-1. Download `humanizer-id.skill` from the [Releases](../../releases) page
-2. Go to **claude.ai → Settings → Skills**
-3. Upload or drag the `.skill` file
+Pola-pola ini merupakan panduan editorial, bukan alat pendeteksi AI. Sebuah pola tidak otomatis berarti teks ditulis oleh AI.
 
-### Option 2: Clone into Claude Code skills directory
+## Instalasi
 
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/ariosenodev/humanizer-bahasa-indonesia.git ~/.claude/skills/humanizer-id
-```
+### Claude Code
 
-### Option 3: Manual install
+Salin folder skill ke folder skill pribadi Claude Code:
 
 ```bash
 mkdir -p ~/.claude/skills/humanizer-id
-cp SKILL.md ~/.claude/skills/humanizer-id/
+cp .claude/skills/humanizer-id/SKILL.md ~/.claude/skills/humanizer-id/SKILL.md
 ```
 
----
+Untuk mengaktifkannya hanya pada repo ini, gunakan file yang sudah tersedia di `.claude/skills/humanizer-id/SKILL.md`.
 
-## Usage
+### Codex CLI
 
-In Claude Code:
+Salin folder skill ke folder skill pribadi Codex:
 
-```
-/humanizer-id
-
-[tempel teks kamu di sini]
-```
-
-Or ask Claude directly:
-
-```
-Tolong humanize teks ini: [teks kamu]
+```bash
+mkdir -p ~/.agents/skills/humanizer-id
+cp .agents/skills/humanizer-id/SKILL.md ~/.agents/skills/humanizer-id/SKILL.md
 ```
 
+Untuk mengaktifkannya hanya pada repo ini, gunakan file yang sudah tersedia di `.agents/skills/humanizer-id/SKILL.md`.
+
+## Penggunaan
+
+Minta secara langsung, misalnya:
+
+> Sunting teks ini agar lebih natural dalam Bahasa Indonesia. Pertahankan makna dan nada formalnya.
+
+Atau, jika skill sudah terpasang:
+
+```text
+$humanizer-id
 ```
-Buat teks ini terdengar lebih natural dan tidak seperti AI
-```
 
----
+Tempelkan teks yang ingin disunting dan sebutkan konteks atau nada yang diinginkan. Jika tidak disebutkan, skill akan mengikuti nada teks sumber.
 
-## Overview
+## Contoh hasil
 
-Based on [Wikipedia's "Signs of AI writing"](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) guide (maintained by WikiProject AI Cleanup), adapted and extended for Bahasa Indonesia. The skill covers all 24 original English patterns, plus 9 new patterns specific to how AI writes in Indonesian.
+**Sebelum**
 
-> "LLMs use statistical algorithms to guess what should come next. The result tends toward the most statistically likely result that applies to the widest variety of cases."
+> Dalam rangka meningkatkan kualitas layanan, sistem ini memiliki kemampuan untuk memproses permohonan dengan lebih cepat.
 
-Works across all writing contexts: articles/blogs, academic writing, business reports, and social media.
+**Sesudah**
 
----
+> Sistem ini memproses permohonan lebih cepat.
 
-## Patterns Detected
+Contoh ini menunjukkan penyederhanaan kalimat tanpa mengubah inti pesannya.
 
-### Universal Patterns (adapted from English)
+## Pola yang dicakup
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| 1 | **Significance inflation** | "menandai tonggak penting dalam evolusi..." | "didirikan pada 1989 untuk mengumpulkan statistik regional" |
-| 2 | **Notability name-dropping** | "dikutip oleh Kompas, BBC, Financial Times" | "Dalam wawancara Kompas 2024, ia berpendapat..." |
-| 3 | **Superficial -ing analyses** | "melambangkan... mencerminkan... menampilkan..." | Hapus atau ganti dengan sumber spesifik |
-| 4 | **Promotional language** | "tersembunyi di kawasan Danau Toba yang menakjubkan" | "adalah desa di tepi Danau Toba" |
-| 5 | **Vague attributions** | "Para ahli percaya sungai ini memainkan peran krusial" | "menurut survei 2019 oleh LIPI" |
-| 6 | **Formulaic challenges section** | "Terlepas dari tantangan... terus berkembang" | Fakta spesifik tentang tantangan nyata |
-| 7 | **AI vocabulary words** | "holistik, transformatif, krusial, lanskap, semarak" | Kata biasa yang lebih spesifik |
-| 8 | **Copula avoidance** | "berfungsi sebagai... berperan sebagai... berdiri sebagai" | "adalah / merupakan" |
-| 9 | **Negative parallelisms** | "Ini bukan hanya tentang X, ini tentang Y" | Langsung ke intinya |
-| 10 | **Rule of three** | "inovasi, inspirasi, dan wawasan industri" | Jumlah item yang natural |
-| 11 | **Synonym cycling** | "tokoh utama... protagonis... figur sentral... sang pahlawan" | Ulangi kata yang paling jelas |
-| 12 | **False ranges** | "dari Big Bang hingga materi gelap" | Daftar topik langsung |
-| 13 | **Em dash overuse** | "lembaga pemerintah—bukan masyarakat—namun terus berlanjut—" | Gunakan koma atau titik |
-| 14 | **Boldface overuse** | "**OKR**, **KPI**, **BMC**" | "OKR, KPI, BMC" |
-| 15 | **Inline-header lists** | "**Performa:** Performa meningkat..." | Ubah ke prosa |
-| 16 | **Title Case headings** | "Negosiasi Strategis Dan Kemitraan Global" | "Negosiasi strategis dan kemitraan global" |
-| 17 | **Emojis** | "🚀 Fase Peluncuran: 💡 Wawasan Kunci:" | Hapus emoji |
-| 18 | **Chatbot artifacts** | "Pertanyaan bagus! Semoga membantu! Beritahu saya jika..." | Hapus seluruhnya |
-| 19 | **Knowledge-cutoff disclaimers** | "Meskipun detail spesifisnya terbatas..." | Cari sumber atau hapus |
-| 20 | **Sycophantic tone** | "Pertanyaan yang sangat bagus! Kamu benar sekali!" | Langsung ke substansi |
-| 21 | **Filler phrases** | "Dalam rangka mencapai...", "Penting untuk dicatat bahwa" | "Untuk...", langsung ke klaimnya |
-| 22 | **Excessive hedging** | "bisa jadi mungkin dapat diargumentasikan bahwa... mungkin" | "kemungkinan berdampak pada" |
-| 23 | **Generic positive conclusions** | "Masa depan terlihat cerah. Waktu menggembirakan menanti..." | Rencana atau fakta spesifik |
+Skill ini membahas 21 pola editorial. Pola adalah petunjuk untuk menyunting, bukan bukti bahwa sebuah teks ditulis oleh AI.
 
-### Indonesian-Specific Patterns
+| # | Pola | Contoh sebelum | Arah penyuntingan |
+| --- | --- | --- | --- |
+| 1 | Signifikansi dan warisan yang dibesar-besarkan | “menandai tonggak penting dalam evolusi...” | Sebutkan fungsi atau fakta konkretnya. |
+| 2 | Klaim keterkenalan tanpa konteks | “dikutip oleh berbagai media ternama” | Sebut sumber dan konteks kutipannya bila relevan. |
+| 3 | Analisis dangkal di akhir kalimat | “..., mencerminkan tren yang lebih luas” | Hapus tafsir kabur atau dukung dengan sumber yang ada. |
+| 4 | Bahasa promosi | “tersembunyi di kawasan yang menakjubkan” | Gunakan deskripsi netral dan spesifik. |
+| 5 | Atribusi kabur | “para ahli percaya...” | Cantumkan sumber yang jelas atau hilangkan atribusinya. |
+| 6 | Bagian tantangan dan prospek yang formulaik | “meski menghadapi tantangan, terus berkembang” | Fokus pada tantangan atau rencana yang benar-benar disebut. |
+| 7 | Kosakata AI yang generik | “holistik, transformatif, lanskap” | Pilih kata konkret sesuai maksud. |
+| 8 | Frasa birokratis | “dalam rangka..., guna memastikan...” | Ringkas menjadi bahasa langsung. |
+| 9 | Pengulangan sinonim untuk subjek yang sama | “tokoh utama, protagonis, figur sentral...” | Gunakan istilah yang paling jelas secara konsisten. |
+| 10 | “Tidak hanya..., tetapi juga...” berlebihan | “Ini tidak hanya X, tetapi juga Y” | Sampaikan hubungan antargagasan secara lugas. |
+| 11 | Tiga serangkai yang dipaksakan | “inovasi, inspirasi, dan wawasan” | Gunakan jumlah unsur yang memang diperlukan. |
+| 12 | Em dash berlebihan | “lembaga pemerintah—bukan masyarakat—...” | Ganti dengan tanda baca atau susun ulang kalimat. |
+| 13 | Huruf tebal berlebihan | “**OKR**, **KPI**, **BMC**” | Gunakan format biasa kecuali ada alasan penekanan. |
+| 14 | Daftar dengan header inline berulang | “**Performa:** Performa meningkat...” | Ringkas menjadi prosa atau daftar yang memang dibutuhkan. |
+| 15 | Emoji dekoratif | “🚀 Fase peluncuran: 💡 wawasan kunci” | Hapus emoji yang tidak membawa makna. |
+| 16 | Artefak chatbot | “Pertanyaan bagus! Semoga membantu!” | Hapus basa-basi chatbot dari teks. |
+| 17 | Penyangkalan batas pengetahuan | “berdasarkan informasi yang tersedia...” | Cari dan gunakan sumber yang tersedia; jangan menebak. |
+| 18 | Nada terlalu memuji | “Kamu benar sekali, poin yang sangat bagus!” | Tanggapi substansi dengan wajar. |
+| 19 | Frasa pengisi | “Penting untuk dicatat bahwa...” | Langsung ke informasi utamanya. |
+| 20 | Hedging berlebihan | “bisa jadi mungkin dapat...” | Pertahankan tingkat kepastian yang didukung sumber. |
+| 21 | Kesimpulan positif generik | “masa depan terlihat cerah” | Akhiri dengan fakta atau rencana spesifik yang tersedia. |
 
-| # | Pattern | Before | After |
-|---|---------|--------|-------|
-| ID-1 | **Bureaucratic filler phrases** | "dalam rangka meningkatkan... guna memastikan... terkait dengan hal tersebut" | "untuk meningkatkan..." |
-| ID-2 | **AI vocabulary in Indonesian** | "holistik, komprehensif, transformatif, tak terbantahkan, berkelanjutan (abstract)" | Kata konkret yang lebih spesifik |
-| ID-3 | **"Tidak hanya... tetapi juga..." overuse** | "Ini tidak hanya X, tetapi juga Y. Bukan sekadar A, melainkan B." | Satu kalimat langsung |
+## Contoh lengkap
 
----
+Contoh berikut bersifat ilustratif untuk menunjukkan jenis penyuntingan yang dilakukan. Detail orang pertama merupakan bagian dari contoh, bukan klaim tentang penulis repo ini.
 
-## Full Example
+**Sebelum**
 
-**Before (AI-sounding):**
+> Pertanyaan bagus! Pengkodean berbantuan AI merupakan bukti abadi dari potensi transformatif large language model, menandai momen penting dalam evolusi pengembangan perangkat lunak. Dalam lanskap teknologi yang terus berkembang pesat saat ini, alat-alat revolusioner ini, tersembunyi di persimpangan antara riset dan praktik, sedang membentuk ulang cara insinyur berideasi, menggarisbawahi peran vitalnya dalam alur kerja modern. Selain itu, kemampuan menghasilkan dokumentasi menampilkan bagaimana AI dapat berkontribusi pada hasil yang lebih baik, menyoroti keterkaitan intrinsik antara otomasi dan penilaian manusia. Dalam rangka mewujudkan potensi ini, tim harus sejalan dengan praktik terbaik. Masa depan terlihat cerah!
 
-> Pertanyaan bagus! Pengkodean berbantuan AI merupakan bukti abadi dari potensi transformatif large language model, menandai momen penting dalam evolusi pengembangan perangkat lunak. Dalam lanskap teknologi yang terus berkembang pesat saat ini, alat-alat revolusioner ini—tersembunyi di persimpangan antara riset dan praktik—sedang membentuk ulang cara insinyur berideasi, menggarisbawahi peran vitalnya dalam alur kerja modern. Selain itu, kemampuan menghasilkan dokumentasi menampilkan bagaimana AI dapat berkontribusi pada hasil yang lebih baik, menyoroti keterkaitan intrinsik antara otomasi dan penilaian manusia. Dalam rangka mewujudkan potensi ini, tim harus sejalan dengan praktik terbaik. Masa depan terlihat cerah!
-
-**After (Humanized):**
+**Sesudah**
 
 > Asisten koding AI bisa bikin kamu lebih cepat di bagian-bagian yang membosankan. Bukan semuanya. Apalagi untuk arsitektur sistem.
 >
-> Bagusnya untuk boilerplate: file konfigurasi, scaffolding tes, refactor berulang. Jeleknya, mereka juga jago terdengar benar padahal salah. Saya pernah asal terima saran yang dikompilasi, lolos lint, tapi tetap miss the point karena saya tidak lagi memperhatikan.
+> Bagusnya untuk boilerplate: file konfigurasi, scaffolding tes, refactor berulang. Jeleknya, mereka juga jago terdengar benar padahal salah. Saya pernah asal terima saran yang dikompilasi, lolos lint, tapi tetap meleset karena saya tidak lagi memperhatikan.
 >
-> Metrik produktivitasnya licin. Kalau tidak ada tes, kamu pada dasarnya nebak.
+> Metrik produktivitasnya licin. Kalau tidak ada tes, kamu pada dasarnya menebak.
 
----
+Contoh ini mempertahankan nada santai. Saat menyunting teks lain, sesuaikan pilihan kata dengan suara dan konteks penulisnya.
 
-## References
+## Batasan
 
-- [blader/humanizer](https://github.com/blader/humanizer) — The original English humanizer skill this is based on
-- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing) — Primary source for all patterns
-- [WikiProject AI Cleanup](https://en.wikipedia.org/wiki/Wikipedia:WikiProject_AI_Cleanup) — Maintaining organization
+- Humanisasi adalah penyuntingan gaya, bukan verifikasi fakta atau pemeriksaan plagiarisme.
+- Teks yang diubah tetap perlu ditinjau penulis, terutama untuk penggunaan akademik, profesional, atau publikasi.
+- Skill tidak menjamin dan tidak dirancang untuk mengelabui detektor AI.
 
----
+## Sumber
 
-## License
+- [Wikipedia: Signs of AI writing](https://en.wikipedia.org/wiki/Wikipedia:Signs_of_AI_writing), sebagai salah satu rujukan pola umum.
+- [blader/humanizer](https://github.com/blader/humanizer), inspirasi untuk adaptasi berbahasa Indonesia ini.
 
-MIT
+## Lisensi
+
+MIT. Lihat [`LICENSE`](LICENSE).
